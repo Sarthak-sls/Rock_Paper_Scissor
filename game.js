@@ -7,9 +7,14 @@ function getComputerChoice(){
     return "scissor";
   }
   else{
-    return paper;
+    return "paper";
+    // hello world
   }
 }
+
+const arr = [1,2,3,4]
+
+arr.some()
 function getHumanChoice(){
    let input=prompt("Enter your choice:")  
   //let input="Rock"
