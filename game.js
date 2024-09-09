@@ -22,7 +22,7 @@ const scissor=document.querySelector(".scissor")
   computerScore.innerText=0;
 
   function compt(){
-    return array[Math.floor(Math.random()*3)+1];
+    return array[Math.floor(Math.random()*3)];
   }
 
   function playRound(player){
