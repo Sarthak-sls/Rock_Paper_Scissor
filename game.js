@@ -1,85 +1,71 @@
-let humanScore=0,computerScore=0;
-function getComputerChoice(){
-  let randomnum=(Math.floor(Math.random()*3)+1);
-  if (randomnum==1) {
-    return "rock";
-  } else if(randomnum==2){
-    return "scissor";
-  }
-  else{
-    return "paper";
-    // hello world
-  }
-}
+const rock=document.querySelector(".rock")
+                    .addEventListener("click",function(){
+                      playRound("rock");
+                    });
+         
+const paper=document.querySelector(".paper")
+                    .addEventListener("click",function(){
+                      playRound("paper");
+                    });                    
+const scissor=document.querySelector(".scissor")
+                    .addEventListener("click",function(){
+                      playRound("scissor");
+                    });
 
-const arr = [1,2,3,4]
+  const playerScore=document.querySelector(".playerScore");
+  const computerScore=document.querySelector(".computerScore");
+  let array=["rock","paper","scissor"];
 
-arr.some()
-function getHumanChoice(){
-   let input=prompt("Enter your choice:")  
-  //let input="Rock"
-  input=input.toLowerCase();
-  return input;
-}
-let humanChoice=getHumanChoice()
-let computerChoice=getComputerChoice()
-  
-  
-function playround(humanChoice,computerChoice){
-         if (humanChoice=="rock"&&computerChoice=="rock") {
-          console.log("it's a draw")
-           
-         }
-        else  if (humanChoice=="paper"&&computerChoice=="paper") {
-          console.log("it's a draw")
-         }
-        else if (humanChoice=="scissor"&&computerChoice=="scissor") {
-           console.log("it's a draw")
-         }
-         else if (humanChoice=="rock"&&computerChoice=="scissor") {
-        console.log("it's a win")
-           humanScore+=1
-         }
-         else if (humanChoice=="rock"&&computerChoice=="paper") {
-           console.log("it's a loss")
-           computerScore+=1
-         }
-         else if (humanChoice=="paper"&&computerChoice=="rock") {
-           console.log("it's a win")
-           humanScore+=1
-         }
-         else if (humanChoice=="paper"&&computerChoice=="scissor") {
-           console.log("it's a loss")
-           computerScore+=1
-         }
-         else if (humanChoice=="scissor"&&computerChoice=="rock") {
-           console.log("it's a loss")
-           computerScore+=1
-         }
-         else if (humanChoice=="scissor"&&computerChoice=="paper") {
-           console.log("it's a win")
-           humanScore+=1}
-        
-}
+  const result=document.querySelector(".result");
+  const Statement=document.querySelector(".Statement")
+  playerScore.innerText=0;
+  computerScore.innerText=0;
+
+  function compt(){
+    return array[Math.floor(Math.random()*3)+1];
+  }
+
+  function playRound(player){
+    let comp=compt();
    
-  let game=true;
-  while (game) {
-    if (humanScore!=5 && computerScore!=5) {
-      playround(humanChoice,computerChoice)
-       console.log(`computer_score${computerScore}`)
-       console.log(`human_score${humanScore}`)
-    } else if(humanScore==5){
-      console.log("you win!")
-      game=false;
+    if (player=="rock" && comp=="rock" && playerScore.innerText<5 && computerScore.innerText<5) {
+      Statement.innerText=`Player=>${player} :Computer=>${comp}`+"\n"+`Tie`;
+    } else if (player=="rock" && comp=="paper" && playerScore.innerText<5 && computerScore.innerText<5) {
+      Statement.innerText=`Player=>${player} :Computer=>${comp}`+"\n"+`computer wins`;
+      computerScore.innerText++;
     }
-    else{
-      console.log("you lose!")
-      game=false;
+    else if (player=="rock" && comp=="scissor" && playerScore.innerText<5 && computerScore.innerText<5) {
+      Statement.innerText=`Player=>${player} :Computer=>${comp}`+"\n"+`you win`;
+      playerScore.innerText++;
+    }
+    else if (player=="paper" && comp=="paper" && playerScore.innerText<5 && computerScore.innerText<5) {
+      Statement.innerText=`Player=>${player} :Computer=>${comp}`+"\n"+`Tie`;
+    
+    }
+    else if (player=="paper" && comp=="rock" && playerScore.innerText<5 && computerScore.innerText<5) {
+      Statement.innerText=`Player=>${player} :Computer=>${comp}`+"\n"+`you win`;
+      playerScore.innerText++;
+    }
+    else if (player=="paper" && comp=="scissor" && playerScore.innerText<5 && computerScore.innerText<5) {
+      Statement.innerText=`Player=>${player} :Computer=>${comp}`+"\n"+`computer win`;
+      computerScore.innerText++;
+    }
+    else if (player=="scissor" && comp=="scissor" && playerScore.innerText<5 && computerScore.innerText<5) {
+      Statement.innerText=`Player=>${player} :Computer=>${comp}`+"\n"+`Tie`;
+    
+    }
+    else if (player=="scissor" && comp=="rock" && playerScore.innerText<5 && computerScore.innerText<5) {
+      Statement.innerText=`Player=>${player} :Computer=>${comp}`+"\n"+`computer win`;
+      computerScore.innerText++;
+    }
+    else if (player=="scissor" && comp=="paper" && playerScore.innerText<5 && computerScore.innerText<5) {
+      Statement.innerText=`Player=>${player} :Computer=>${comp}`+"\n"+`you win`;
+      playerScore.innerText++;
+    }
+    if (playerScore.innerText==5) {
+      result.innerText="YOU WON THE GAME";
+    }
+    else if(computerScore.innerText==5){
+      result.innerText="YOU LOSE THE GAME";
     }
   }
-
-  function playGame(){
-    playround()
-  }
-
-playGame();
