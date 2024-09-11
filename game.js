@@ -66,6 +66,6 @@ const scissor=document.querySelector(".scissor")
       result.innerText="YOU WON THE GAME";
     }
     else if(computerScore.innerText==5){
-      result.innerText="YOU LOSE THE GAME";
+      result.innerText="YOU LOST THE GAME";
     }
   }
